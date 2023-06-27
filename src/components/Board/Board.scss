@@ -1,0 +1,23 @@
+.board {
+  --board-grid-columns: repear(4, 1fr);
+
+  display: grid;
+  grid-template-columns: var(--board-grid-columns);
+  gap: 1.6rem;
+  max-width: 64rem;
+  max-height: 64rem;
+  width: 100%;
+  height: 100%;
+
+  &--easy {
+    --board-grid-columns: repeat(2, 1fr);
+  }
+
+  &--normal {
+    --board-grid-columns: repeat(3, 1fr);
+  }
+
+  &--hard {
+    --board-grid-columns: repeat(4, 1fr);
+  }
+}
