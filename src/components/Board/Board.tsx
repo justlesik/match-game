@@ -11,19 +11,16 @@ interface Props {
 }
 
 const cardSources = [
-  // grid 2/3
-  { name: '🍒', matched: false }, // easy
-  { name: '🍌', matched: false }, // easy
-  { name: '🥝', matched: false }, // easy
-  // // grid 3/4
-  { name: '🍏', matched: false }, // normal
-  { name: '🍊', matched: false }, // normal
-  { name: '🍇', matched: false }, // normal
-  // grid 4/5
-  { name: '🍉', matched: false }, // hard
-  { name: '🍓', matched: false }, // hard
-  { name: '🫐', matched: false }, // hard
-  { name: '🍋', matched: false }, // hard
+  { name: '🐶', matched: false },
+  { name: '🐱', matched: false },
+  { name: '🐭', matched: false },
+  { name: '🐹', matched: false },
+  { name: '🐰', matched: false },
+  { name: '🦊', matched: false },
+  { name: '🐻', matched: false },
+  { name: '🐼', matched: false },
+  { name: '🐯', matched: false },
+  { name: '🦁', matched: false },
 ];
 
 export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy }) => {

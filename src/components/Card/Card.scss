@@ -1,5 +1,5 @@
 .card {
-  --card-background-color: var(--clr-purple-800);
+  --card-background-color: linear-gradient(180deg, var(--clr-white) 0%, var(--clr-grey-200) 100%);
   --card-border-color: var(--clr-grey-100);
 
   position: relative;
@@ -27,12 +27,8 @@
     height: 100%;
   }
 
-  .back-face {
-    --card-background-color: linear-gradient(var(--clr-purple-700), var(--clr-purple-800));
-  }
-
   .front-face {
-    --card-background-color: var(--clr-grey-100);
+    --card-background-color: var(--clr-white);
     transform: rotateY(180deg);
   }
 }
