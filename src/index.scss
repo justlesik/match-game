@@ -1,4 +1,5 @@
 @import './styles/colors';
+@import './styles/typography';
 
 * {
   margin: 0;
@@ -8,8 +9,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--clr-white);
@@ -20,7 +20,11 @@ code {
 }
 
 h1 {
-  font-size: 3.2rem;
+  font-size: 4.8rem;
+}
+
+h2 {
+  font-size: 3.6rem;
 }
 
 html,
@@ -32,5 +36,5 @@ body,
 
 html {
   font-size: 62.5%;
-  background-color: var(--clr-purple-900);
+  background: linear-gradient(180deg, var(--clr-purple-800) 0%, var(--clr-purple-900) 100%);
 }

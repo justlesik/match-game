@@ -24,7 +24,7 @@ export const Card: React.FC<Props> = ({ flipped, disabled, onClick, card }) => {
     <div className={classes}>
       <div className="front-face">{card.name}</div>
       <div className="back-face" onClick={handleClick}>
-        🦄
+        🐾
       </div>
     </div>
   );
