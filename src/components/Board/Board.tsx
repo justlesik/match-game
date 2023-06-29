@@ -1,63 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-import { Card, ICard } from '../Card';
-import { Difficulty } from '.';
+import { Card } from '../Card';
+
+import { CardSet, animals } from '../../constants/cardSets.constant';
+import { Difficulty } from '../../constants/difficulties.constant';
+
+import { getCardsByDifficulty } from '../../utils/difficulty.util';
 
 import './Board.scss';
 
 interface Props {
   difficulty?: Difficulty;
-  onComplete?: (res: number) => void;
+  onCompletion?: (turns: number) => void;
 }
 
-const cardSources = [
-  { name: '🐶', matched: false },
-  { name: '🐱', matched: false },
-  { name: '🐭', matched: false },
-  { name: '🐹', matched: false },
-  { name: '🐰', matched: false },
-  { name: '🦊', matched: false },
-  { name: '🐻', matched: false },
-  { name: '🐼', matched: false },
-  { name: '🐯', matched: false },
-  { name: '🦁', matched: false },
-];
-
-export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy, onComplete }) => {
-  const [cards, setCards] = useState<ICard[]>([]);
-  const [firstChoice, setFirstChoice] = useState<ICard | null>(null);
-  const [secondChoice, setSecondChoice] = useState<ICard | null>(null);
+export const Board: React.FC<Props> = ({ difficulty = 'easy', onCompletion }) => {
+  const [cards, setCards] = useState<CardSet[]>([]);
+  const [firstChoice, setFirstChoice] = useState<CardSet | null>(null);
+  const [secondChoice, setSecondChoice] = useState<CardSet | null>(null);
   const [disabled, setDisabled] = useState<boolean>(false);
   const [animatedCards, setAnimatedCards] = useState<number[]>([]);
   const [turns, setTurns] = useState<number>(0);
 
   const classes = classNames('board', `board--${difficulty}`);
 
-  const getCardsByDifficulty = () => {
-    const difficultyMap = {
-      [Difficulty.easy]: 3,
-      [Difficulty.normal]: 6,
-      [Difficulty.hard]: 10,
-    };
-
-    return cardSources.slice(0, difficultyMap[difficulty]);
-  };
+  const slicedCards = getCardsByDifficulty(animals, difficulty);
 
   useEffect(() => {
-    if (onComplete && cards.length > 0 && cards.every(card => card.matched)) {
-      setTimeout(() => onComplete(turns), 500);
+    if (onCompletion && cards.length > 0 && cards.every(card => card.matched)) {
+      setTimeout(() => onCompletion(turns), 500);
     }
-  }, [cards]);
-
-  useEffect(() => {
-    resetTurn();
-    shuffleCards();
-  }, [difficulty]);
+  }, [cards, onCompletion, turns]);
 
   const shuffleCards = () => {
     if (disabled) return;
-    const shuffledCards = [...getCardsByDifficulty(), ...getCardsByDifficulty()]
+    const shuffledCards = [...slicedCards, ...slicedCards]
       .map(card => ({ ...card, id: Math.random().toString() }))
       .sort(() => Math.random() - 0.5);
     setCards(shuffledCards as any);
@@ -89,7 +67,7 @@ export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy, onComplet
 
   useEffect(() => {
     shuffleCards();
-  }, []);
+  }, [difficulty]);
 
   return (
     <div className={classes}>
