@@ -8,6 +8,7 @@ import './Board.scss';
 
 interface Props {
   difficulty?: Difficulty;
+  onComplete?: (res: number) => void;
 }
 
 const cardSources = [
@@ -23,11 +24,13 @@ const cardSources = [
   { name: '🦁', matched: false },
 ];
 
-export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy }) => {
+export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy, onComplete }) => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [firstChoice, setFirstChoice] = useState<ICard | null>(null);
   const [secondChoice, setSecondChoice] = useState<ICard | null>(null);
   const [disabled, setDisabled] = useState<boolean>(false);
+  const [animatedCards, setAnimatedCards] = useState<number[]>([]);
+  const [turns, setTurns] = useState<number>(0);
 
   const classes = classNames('board', `board--${difficulty}`);
 
@@ -40,6 +43,12 @@ export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy }) => {
 
     return cardSources.slice(0, difficultyMap[difficulty]);
   };
+
+  useEffect(() => {
+    if (onComplete && cards.length > 0 && cards.every(card => card.matched)) {
+      setTimeout(() => onComplete(turns), 500);
+    }
+  }, [cards]);
 
   useEffect(() => {
     resetTurn();
@@ -67,6 +76,7 @@ export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy }) => {
   useEffect(() => {
     if (!firstChoice || !secondChoice) return;
     setDisabled(true);
+    setTurns(prevTurns => prevTurns + 1);
     if (firstChoice.name === secondChoice.name) {
       setCards(prevCards =>
         prevCards.map(card => (card.name === firstChoice.name ? { ...card, matched: true } : card))
@@ -87,6 +97,8 @@ export const Board: React.FC<Props> = ({ difficulty = Difficulty.easy }) => {
         <Card
           key={card.id}
           card={card}
+          className={animatedCards.includes(card.id) ? '' : 'animate'}
+          onAnimationEnd={() => setAnimatedCards(prevCards => [...prevCards, card.id])}
           flipped={firstChoice === card || secondChoice === card || card.matched}
           onClick={handleChoice}
           disabled={disabled}

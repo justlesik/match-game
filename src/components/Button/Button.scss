@@ -1,0 +1,91 @@
+.button {
+  --button-border-color: var(--clr-purple-700);
+  --button-color: var(--clr-white);
+  --button-background-color: var(--clr-purple-700);
+
+  background-color: var(--button-background-color);
+  border: 0.4rem solid var(--button-border-color);
+  padding: 1.6rem 2.4rem;
+  border-radius: 1.6rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--button-color);
+  transition: color 300ms, background-color 300ms, border-color 300ms;
+  outline: none;
+  width: 100%;
+
+  &--primary {
+    &:hover,
+    &:focus {
+      --button-background-color: var(--clr-purple-800);
+      --button-border-color: var(--clr-purple-800);
+    }
+
+    &:active {
+      --button-background-color: var(--clr-purple-900);
+      --button-border-color: var(--clr-purple-900);
+    }
+  }
+
+  &--primary-outline {
+    --button-border-color: var(--clr-purple-700);
+    --button-color: var(--clr-purple-700);
+    --button-background-color: transparent;
+
+    &:hover,
+    &:focus {
+      --button-background-color: var(--clr-purple-700);
+      --button-color: var(--clr-white);
+    }
+
+    &:active {
+      --button-background-color: var(--clr-purple-800);
+      --button-border-color: var(--clr-purple-800);
+    }
+  }
+
+  &--secondary {
+    --button-background-color: var(--clr-white);
+    --button-border-color: var(--clr-white);
+    --button-color: var(--clr-purple-700);
+
+    &:hover,
+    &:focus {
+      --button-background-color: var(--clr-grey-100);
+      --button-border-color: var(--clr-grey-100);
+    }
+
+    &:active {
+      --button-background-color: var(--clr-grey-200);
+      --button-border-color: var(--clr-grey-200);
+    }
+  }
+
+  &--secondary-outline {
+    --button-background-color: transparent;
+    --button-border-color: var(--clr-white);
+    --button-color: var(--clr-white);
+
+    &:hover,
+    &:focus {
+      --button-background-color: var(--clr-white);
+      --button-color: var(--clr-purple-700);
+    }
+
+    &:active {
+      --button-background-color: var(--clr-grey-100);
+      --button-border-color: var(--clr-grey-100);
+    }
+  }
+
+  &:disabled {
+    --button-background-color: var(--clr-grey-100);
+    --button-color: var(--clr-grey-900);
+    --button-border-color: var(--clr-grey-900);
+
+    cursor: default;
+  }
+}
