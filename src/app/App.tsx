@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 
-import { Board, Difficulty } from '../components/Board';
-import { DifficultyModal } from '../components/DifficultyModal';
+import { Board } from '../components/Board';
 import { Button } from '../components/Button';
-
-import './App.scss';
+import { DifficultyModal } from '../components/DifficultyModal';
 import { CompletionModal } from '../components/CompletionModal/CompletionModal';
 
+import { Difficulty } from '../constants/difficulties.constant';
+
+import './App.scss';
+
 export const App: React.FC = () => {
-  const [difficulty, setDifficulty] = useState(Difficulty.hard);
-  const [difficultySelection, setDifficultySelection] = useState(true);
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [turns, setTurns] = useState(0);
+  const [difficulty, setDifficulty] = useState<Difficulty>('easy');
+  const [difficultySelection, setDifficultySelection] = useState<boolean>(true);
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [turns, setTurns] = useState<number>(0);
+
+  const showBoard = !difficultySelection && !isCompleted;
 
   const handleCompletion = (turns: number) => {
     setTurns(turns);
@@ -41,7 +45,7 @@ export const App: React.FC = () => {
         onDifficultyChange={handleDifficultyChange}
         onRestart={handleRestart}
       />
-      {!difficultySelection && !isCompleted && (
+      {showBoard && (
         <>
           <h4 className="app__title">Find matches</h4>
           <Button
@@ -50,7 +54,7 @@ export const App: React.FC = () => {
             onClick={() => setDifficultySelection(true)}>
             New game
           </Button>
-          <Board onComplete={handleCompletion} difficulty={difficulty} />
+          <Board onCompletion={handleCompletion} difficulty={difficulty} />
         </>
       )}
     </div>

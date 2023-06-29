@@ -1,17 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type { ICard } from '.';
+import { CardSet } from '../../constants/cardSets.constant';
 
 import './Card.scss';
 
 interface Props {
   flipped?: boolean;
   disabled?: boolean;
-  card: ICard;
+  card: CardSet;
   className?: string;
   onAnimationEnd?: React.AnimationEventHandler<HTMLDivElement>;
-  onClick: (card: ICard) => void;
+  onClick: (card: CardSet) => void;
 }
 
 export const Card: React.FC<Props> = ({ flipped, disabled, onClick, card, className, onAnimationEnd }) => {
