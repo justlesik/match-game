@@ -8,12 +8,14 @@ import './Card.scss';
 interface Props {
   flipped?: boolean;
   disabled?: boolean;
-  onClick: (card: ICard) => void;
   card: ICard;
+  className?: string;
+  onAnimationEnd?: React.AnimationEventHandler<HTMLDivElement>;
+  onClick: (card: ICard) => void;
 }
 
-export const Card: React.FC<Props> = ({ flipped, disabled, onClick, card }) => {
-  const classes = classNames('card', { 'card--flipped': flipped });
+export const Card: React.FC<Props> = ({ flipped, disabled, onClick, card, className, onAnimationEnd }) => {
+  const classes = classNames('card', { 'card--flipped': flipped }, className);
 
   const handleClick = () => {
     if (disabled) return;
@@ -21,7 +23,7 @@ export const Card: React.FC<Props> = ({ flipped, disabled, onClick, card }) => {
   };
 
   return (
-    <div className={classes}>
+    <div className={classes} onAnimationEnd={onAnimationEnd}>
       <div className="front-face">{card.name}</div>
       <div className="back-face" onClick={handleClick}>
         🐾

@@ -1,8 +1,21 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.4rem;
-  padding: 2.4rem;
-  height: 100%;
+.app {
+  --app-title-color: var(--clr-white);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 2.4rem;
+    height: 100%;
+  }
+
+  &__new-game-btn {
+    max-width: 37.5rem;
+    padding: 0.8rem 1.6rem;
+  }
+
+  &__title {
+    color: var(--app-title-color);
+  }
 }
