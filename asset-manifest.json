@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/match-game/static/css/main.e074144c.css",
-    "main.js": "/match-game/static/js/main.c7b2cbb7.js",
+    "main.css": "/match-game/static/css/main.04c2478d.css",
+    "main.js": "/match-game/static/js/main.b363fd10.js",
     "static/js/787.50ca6c20.chunk.js": "/match-game/static/js/787.50ca6c20.chunk.js",
     "index.html": "/match-game/index.html",
-    "main.e074144c.css.map": "/match-game/static/css/main.e074144c.css.map",
-    "main.c7b2cbb7.js.map": "/match-game/static/js/main.c7b2cbb7.js.map",
+    "main.04c2478d.css.map": "/match-game/static/css/main.04c2478d.css.map",
+    "main.b363fd10.js.map": "/match-game/static/js/main.b363fd10.js.map",
     "787.50ca6c20.chunk.js.map": "/match-game/static/js/787.50ca6c20.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e074144c.css",
-    "static/js/main.c7b2cbb7.js"
+    "static/css/main.04c2478d.css",
+    "static/js/main.b363fd10.js"
   ]
 }
